@@ -530,10 +530,10 @@ function Invoke-Plaster {
             $PSCmdlet.WriteDebug("Looking for '$name' value in Git config: $gitConfigPath")
 
             if (Test-Path -LiteralPath $gitConfigPath) {
-                $matches = Select-String -LiteralPath $gitConfigPath -Pattern "\s+$name\s+=\s+(.+)$"
-                if (@($matches).Count -gt 0)
+                $gitConfigPathMatches = Select-String -LiteralPath $gitConfigPath -Pattern "\s+$name\s+=\s+(.+)$"
+                if (@($gitConfigPathMatches).Count -gt 0)
                 {
-                    $matches.Matches.Groups[1].Value
+                    $gitConfigPathMatches.Matches.Groups[1].Value
                 }
             }
         }
@@ -739,7 +739,7 @@ function Invoke-Plaster {
                         $defaults = [int[]]($default -split ',')
 
                         # Prompt the user for choice or multichoice selection input.
-                        $selections = PromptForChoice $name $choices $prompt $defaults -IsMultiChoice:($type -eq 'multichoice')
+                        $selections = PromptForChoice -ParameterName $name -ChoiceNodes $choices -prompt $prompt -defaults $defaults -IsMultiChoice:($type -eq 'multichoice')
                         $value = $selections.Values
                         $OFS = ","
                         $valueToStore = "$($selections.Indices)"
