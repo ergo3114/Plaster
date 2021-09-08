@@ -90,7 +90,6 @@ Describe 'File Directive ExpandFileSource Tests' {
 
             Invoke-Plaster -TemplatePath $TemplateDir -DestinationPath $OutDir -NoLogo 6> $null
 
-            $src = Get-ChildItem $PSScriptRoot\Recurse -Recurse -File -Filter *.txt -Name
             $dst = Get-ChildItem $OutDir\RecurseOut -Recurse -File -Filter *.txt -Name
             $dst | Should -Be "empty.txt", "foo.txt"
         }

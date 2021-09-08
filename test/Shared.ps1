@@ -1,12 +1,15 @@
 $ModuleManifestName  = 'Plaster.psd1'
 $ModuleManifestPath  = "$PSScriptRoot\..\src\$ModuleManifestName"
 $TemplateDir         = "$PSScriptRoot\TemplateRootTemp"
+[System.Diagnostics.CodeAnalysis.SuppressMessage('PSUseDeclaredVarsMoreThanAssigments', '')]
 $OutDir              = "$PSScriptRoot\Out"
+[System.Diagnostics.CodeAnalysis.SuppressMessage('PSUseDeclaredVarsMoreThanAssigments', '')]
 $PlasterManifestPath = "$TemplateDir\plasterManifest.xml"
 
 if (!$SuppressImportModule) {
     # -Scope Global is needed when running tests from inside of psake, otherwise
     # the module's functions cannot be found in the Plaster\ namespace
+    [System.Diagnostics.CodeAnalysis.SuppressMessage('PSUseDeclaredVarsMoreThanAssigments', '')]
     $plasterModule = Import-Module $ModuleManifestPath -Scope Global -PassThru
 }
 

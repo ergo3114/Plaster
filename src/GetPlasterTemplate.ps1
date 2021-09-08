@@ -40,7 +40,7 @@ function Get-PlasterTemplate {
         [switch]
         [Alias("IncludeModules")]
         $IncludeInstalledModules,
-        
+
         [Parameter(ParameterSetName="IncludedTemplates",
                    HelpMessage="If specified, searches for Plaster templates inside of all installed module versions.")]
         [switch]
@@ -59,7 +59,7 @@ function Get-PlasterTemplate {
                 Author = $metadata["author"].InnerText
                 Version = New-Object -TypeName "System.Version" -ArgumentList $metadata["version"].InnerText
                 Description = $metadata["description"].InnerText
-                Tags = $metadata["tags"].InnerText.split(",") | % { $_.Trim() }
+                Tags = $metadata["tags"].InnerText.split(",") | Foreach-Object { $_.Trim() }
                 TemplatePath = $manifestPath.Directory.FullName
             }
 
@@ -102,7 +102,7 @@ function Get-PlasterTemplate {
                     ModuleVersion = $PlasterVersion
                     ListAvailable = $ListAvailable
                 }
-                
+
                 $extensions = Get-ModuleExtension @GetModuleExtensionParams
 
                 foreach ($extension in $extensions) {
