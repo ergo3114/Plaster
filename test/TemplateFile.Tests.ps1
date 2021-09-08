@@ -8,7 +8,7 @@ Describe 'TemplateFile Directive Tests' {
 
 @"
 <?xml version="1.0" encoding="utf-8"?>
-<plasterManifest schemaVersion="0.3" xmlns="http://www.microsoft.com/schemas/PowerShell/Plaster/v1">
+<plasterManifest schemaVersion="0.3" xmlns="https://raw.githubusercontent.com/ergo3114/Plaster/Update_Tests_Manifest_File_Versions/src/Schema/PlasterManifest-v1.xsd">
     <metadata>
         <name>TemplateName</name>
         <id>513d2fdc-3cce-47d9-9531-d85114efb224</id>
@@ -36,7 +36,7 @@ Describe 'TemplateFile Directive Tests' {
 
 @'
 <?xml version="1.0" encoding="utf-8"?>
-<plasterManifest schemaVersion="0.3" xmlns="http://www.microsoft.com/schemas/PowerShell/Plaster/v1">
+<plasterManifest schemaVersion="0.3" xmlns="https://raw.githubusercontent.com/ergo3114/Plaster/Update_Tests_Manifest_File_Versions/src/Schema/PlasterManifest-v1.xsd">
     <metadata>
         <name>TemplateName</name>
         <id>513d2fdc-3cce-47d9-9531-d85114efb224</id>
