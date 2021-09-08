@@ -7,7 +7,7 @@
 <xs:schema
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
   xmlns:ptd="http://www.microsoft.com/schemas/PowerShell/Plaster/v1"
-  targetNamespace="http://www.microsoft.com/schemas/PowerShell/Plaster/v1"
+  targetNamespace="https://raw.githubusercontent.com/ergo3114/Plaster/master/src/Schema/PlasterManifest-v1.xsd"
   elementFormDefault="qualified"
   attributeFormDefault="unqualified"
   version="1.2"
