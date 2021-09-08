@@ -8,15 +8,17 @@ schema: 2.0.0
 # Test-PlasterManifest
 
 ## SYNOPSIS
+
 Verifies that a plaster manifest file is a valid.
 
 ## SYNTAX
 
-```
+```powershell
 Test-PlasterManifest [[-Path] <String[]>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 Verifies that a plaster manifest file is a valid.
 If there are any errors, the details of the errors can be viewed by using the
 Verbose parameter.
@@ -24,7 +26,8 @@ Verbose parameter.
 ## EXAMPLES
 
 ### -------------------------- EXAMPLE 1 --------------------------
-```
+
+```powershell
 Test-PlasterManifest MyTemplate\plasterManifest.xml
 ```
 
@@ -32,7 +35,8 @@ Verifies that the plasterManifest.xml file in the MyTemplate sub-directory
 is valid.
 
 ### -------------------------- EXAMPLE 2 --------------------------
-```
+
+```powershell
 Test-PlasterManifest plasterManifest.xml -Verbose
 ```
 
@@ -43,6 +47,7 @@ of those errors.
 ## PARAMETERS
 
 ### -Path
+
 Specifies a path to a plasterManifest.xml file.
 
 ```yaml
@@ -58,16 +63,19 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### System.String
+
 You can pipe the path to a plaster manifest to Test-PlasterManifest.
 
 ## OUTPUTS
 
 ### System.Xml.XmlDocument
+
 Test-PlasterManifest returns a System.Xml.XmlDocument if the manifest is
 valid. Otherwise it returns $null.
 
@@ -77,4 +85,3 @@ valid. Otherwise it returns $null.
 
 [Invoke-Plaster](https://github.com/PowerShell/Plaster/blob/master/docs/en-US/Invoke-Plaster.md)
 [New-PlasterManifest](https://github.com/PowerShell/Plaster/blob/master/docs/en-US/New-PlasterManifest.md)
-

@@ -25,9 +25,11 @@ This document aims to lay out a rough design for a new module named Plaster whic
   default value instead of the template provided default value. **DECISION** implemented. 'Nuf said.
 - There are several places where we want to allow for parameter substitution: inside the template manifest file and inside of content files.
   With the template manifest file you may want to use a parameter in a file copy command e.g.:
+
   ```xml
   <file source='Module.psm1' destination='${PLASTER_PARAM_ModuleName}.psm1'/>
   ```
+
   One approach is to throw the attribute text directly at `$ExecutionContext.InvokeCommand.ExpandString()`.
   This is very flexible, if you need the year use `$([DateTime]::Now.Year)` or if you need a new GUID use `$([Guid]::NewGuid())`. Two caveats (at least), first
   where you need a new guid you will likely need it again.  VSIX solves this by offering predefined variables GUID0 thru GUID10.  Second, it is
@@ -69,11 +71,13 @@ This document aims to lay out a rough design for a new module named Plaster whic
 - Condition support.  The template author needs to "conditionally" apply a template directive based on input from the user.
   Perhaps there is a template parameter that requires the user to answer the question "Do you want a PSake build script?".  Based on the
   user's response (or argument value passed to Invoke-Plaster) the template will execute a directive (or not) e.g.:
+
   ```xml
   <file source='build.ps1'
         destination='build.ps1'
         condition='$PLASTER_PARAM_Options -contains "PSake"'/>
   ```
+
   This requires execution of an expression.  **ISSUE: How do we do this but remain safe and not allow arbitrary code execution?**  Another (constrained) runspace?
 
 ## Concepts
@@ -92,6 +96,7 @@ to a ZIP file instead of an uncompressed template directory.
 
 This command will also have dynamic parameters that correspond to the template parameters defined in
 the PlasterManifest file.  For instance, given these parameters:
+
 ```xml
     <parameters>
         <parameter name='ModuleName' type='text' required='true' prompt='Enter the name of the module'/>
@@ -192,6 +197,7 @@ for editor-specific template files.  Can we do composition via dependencies?  Ha
 B be laid down first?
 
 ### Arbitrary Code Execution
+
 I believe there is a need for an eventual `<script>` directive but I would like to wait until after the first version ships
 and folks have a chance to use it and grok what Plaster is.  As Solomon Hykes, founder of Docker, has said about open source
 development _"Rule #1 - no is temporary, yes is forever"_.
