@@ -8,17 +8,19 @@ schema: 2.0.0
 # New-PlasterManifest
 
 ## SYNOPSIS
+
 Creates a new Plaster template manifest file.
 
 ## SYNTAX
 
-```
+```powershell
 New-PlasterManifest [[-Path] <String>] [-TemplateName] <String> [-TemplateType] <String> [[-Id] <Guid>]
  [[-TemplateVersion] <String>] [[-Title] <String>] [[-Description] <String>] [[-Tags] <String[]>]
  [[-Author] <String>] [-AddContent] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 The New-PlasterManifest command creates a new Plaster manifest file,
 populates its values, and saves the manifest file in the specified path.
 
@@ -46,14 +48,16 @@ authoring a Plaster manifest file.
 ## EXAMPLES
 
 ### -------------------------- EXAMPLE 1 --------------------------
-```
+
+```powershell
 New-PlasterManifest -TemplateName NewPowerShellItem -TemplateType Item
 ```
 
 Creates a basic plasterManifest.xml file in the current directory.
 
 ### -------------------------- EXAMPLE 2 --------------------------
-```
+
+```powershell
 New-PlasterManifest -TemplateName NewPowerShellItem -TemplateType Item -TemplateVersion 0.1.0 -Description "Some description." -Tags Module, Publish,Build
 ```
 
@@ -61,7 +65,8 @@ Creates a plasterManifest.xml file in the current directory with the version set
 Description and Tags elements populated.
 
 ### -------------------------- EXAMPLE 3 --------------------------
-```
+
+```powershell
 New-PlasterManifest -TemplateName NewPowerShellItem -TemplateType Item -AddContent
 ```
 
@@ -72,13 +77,14 @@ current directory.
 ## PARAMETERS
 
 ### -AddContent
+
 If specified, the contents of the directory the manifest is being created in will be added to the
 manifest's content element.
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -88,12 +94,13 @@ Accept wildcard characters: False
 ```
 
 ### -Author
+
 Specifies the author of the template.
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: 8
@@ -103,6 +110,7 @@ Accept wildcard characters: False
 ```
 
 ### -Confirm
+
 Prompts you for confirmation before running the cmdlet.
 
 ```yaml
@@ -118,6 +126,7 @@ Accept wildcard characters: False
 ```
 
 ### -Description
+
 Description of the Plaster template.
 This describes what the the template is for.
 It is typically used in
@@ -128,7 +137,7 @@ tests, building with psake and publishing to the PowerShell Gallery."
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: 6
@@ -138,6 +147,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
+
 Unique identifier for all versions of this template.
 The id is a GUID.
 Use the same id for each version
@@ -150,7 +160,7 @@ template.
 ```yaml
 Type: Guid
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: 3
@@ -160,6 +170,7 @@ Accept wildcard characters: False
 ```
 
 ### -Path
+
 Specifies the path and file name of the new Plaster manifest.
 Enter a path and file name with a .xml
 extension, such as $pshome\Modules\MyPlasterTemplate\plasterManifest.xml.
@@ -171,7 +182,7 @@ The default, if no value is provided is to create plasterManifest.xml in the cur
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: 0
@@ -181,13 +192,14 @@ Accept wildcard characters: False
 ```
 
 ### -Tags
+
 Specifies an array of tags for the template.
 Users can search for templates based on these tags.
 
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: 7
@@ -197,6 +209,7 @@ Accept wildcard characters: False
 ```
 
 ### -TemplateName
+
 Specifies the name of the template.
 A template name is required.
 For localized manifests, this value
@@ -206,7 +219,7 @@ The name is limited to the characters: aA-zZ0-9_-.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -216,6 +229,7 @@ Accept wildcard characters: False
 ```
 
 ### -TemplateType
+
 Defines the type of template.  Valid values are: Project and Item.  This value
 is used by editor extensions like the PowerShell extension for Visual Studio
 Code to determine if the template expects to create a whole new project in an
@@ -224,7 +238,7 @@ empty workspace or if it adds an item to an existing workspace.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: Item, Project
 
 Required: True
@@ -235,12 +249,13 @@ Accept wildcard characters: False
 ```
 
 ### -TemplateVersion
+
 Specifies the version of the template.
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: 4
@@ -250,6 +265,7 @@ Accept wildcard characters: False
 ```
 
 ### -Title
+
 Title of the Plaster template.
 This string is typically used in an editor like VSCode when displaying
 a list of Plaster templates.
@@ -258,7 +274,7 @@ A typical title might be "New DSC Resource" or "New PowerShell Module".
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: 5
@@ -268,6 +284,7 @@ Accept wildcard characters: False
 ```
 
 ### -WhatIf
+
 Shows what would happen if the cmdlet runs.
 The cmdlet is not run.
 
@@ -284,11 +301,13 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters ([http://go.microsoft.com/fwlink/?LinkID=113216]).
 
 ## INPUTS
 
 ### None
+
 You cannot pipe input to this cmdlet.
 
 ## OUTPUTS
@@ -301,4 +320,3 @@ You cannot pipe input to this cmdlet.
 
 [Invoke-Plaster](https://github.com/PowerShell/Plaster/blob/master/docs/en-US/Invoke-Plaster.md)
 [Test-PlasterManifest](https://github.com/PowerShell/Plaster/blob/master/docs/en-US/Test-PlasterManifest.md)
-

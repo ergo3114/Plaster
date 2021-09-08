@@ -1,12 +1,15 @@
 # Creating a Plaster Manifest
+
 ## about_Plaster_CreatingAManifest
 
 # SHORT DESCRIPTION
+
 This about topic will explain the schema of a Plaster Manifest.
 
 For nearly all uses the `New-PlasterManifest` command is correct approach to start with, as this will ensure you generate a valid base manifest.
 
 # LONG DESCRIPTION
+
 This about topic will explain the schema of a Plaster Manifest.
 
 For nearly all uses the `New-PlasterManifest` command is correct approach to start with, as this will ensure you generate a valid base manifest.
@@ -14,6 +17,7 @@ For nearly all uses the `New-PlasterManifest` command is correct approach to sta
 This topic serves to document the existing manifest schema, currently version `0.4`, using the example Plaster manifest `NewModuleTemplate`. The current Plaster manifest schema can be found at [PlasterManifest-v1.xsd](https://github.com/PowerShell/Plaster/blob/master/src/Schema/PlasterManifest-v1.xsd)
 
 ## The manifest base
+
 The overall structure of the manifest (shown below) consists of three main sections, `metadata`, `parameters` and `content`.
 
 The `metadata` section contains data about the manifest itself, including `title` and `version` of the manifest.
@@ -35,6 +39,7 @@ The Plaster manifest attribute `schemaVersion` indicates the minimum required Pl
 ```
 
 ## Metadata
+
 The `metadata` section contains information about the Plaster manifest itself and requires the following data:
 
 - `name`        - Manifest name. This value is mandatory.
@@ -48,6 +53,7 @@ template. This field is automatically generated if not given a value.
 - `author`      - (Optional) Authors name or details.
 
 An example of the settings explained above can be shown by running `New-PlasterManifest` this would give you something similar to the the following:
+
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <plasterManifest
@@ -67,6 +73,7 @@ An example of the settings explained above can be shown by running `New-PlasterM
 ```
 
 ## Parameters
+
 Parameters are pieces of information that Plaster will ask for to build the template. Parameters are optional directives, as all the data for the template could potentially be pre-configured, but that would defeat the purpose of the Plaster!
 
 Data for these parameters can be taken either as parameters to `Invoke-Plaster`, or will be prompted for by Plaster. Specifying the attributes for parameters is done using the following data:
@@ -80,17 +87,22 @@ Data for these parameters can be taken either as parameters to `Invoke-Plaster`,
 Locations for the template input store differ based on operating system. Here is the list of possible locations and when they will be used:
 
 Windows
+
 - `$env:LOCALAPPDATA\Plaster`.
 
 Linux
+
 - `$XDG_DATA_HOME/plaster` (If `$XDG_DATA_HOME` has a value).
 - `$Home/.local/share/plaster` (No `$XDG_DATA_HOME` value).
 
 Other
+
 - `$Home/.plaster`.
 
 ### Parameter Type: Text
+
 In interactive mode, the `text` parameter type results in a prompt for a string of text:
+
 ```xml
 <parameter name='ModuleName'
            type='text'
@@ -98,11 +110,13 @@ In interactive mode, the `text` parameter type results in a prompt for a string 
 ```
 
 This parameter definition results in the following prompt:
-```
+
+```text
 Enter the name of the module: FooUtils
 ```
 
 Additionally, a default value can be specified, as shown in the next example:
+
 ```xml
 <parameter name='Version'
            type='text'
@@ -111,11 +125,13 @@ Additionally, a default value can be specified, as shown in the next example:
 ```
 
 This results in the following output, with the default value in parentheses:
-```
+
+```text
 Enter the version number for the module (0.1.0):
 ```
 
 ### Parameter Type: Choice
+
 In interactive mode, the `choice` parameter type asks for a single choice from the available options. Place the ampersand in front of the character in the `label` that is best suitable as a "keyboard accelerator" for the given choice. This choice type also provides a help option '`?`' used to display the help text:
 
 ```xml
@@ -133,7 +149,8 @@ In interactive mode, the `choice` parameter type asks for a single choice from t
 ```
 
 This parameter definition results in the following output:
-```
+
+```text
 Select a license for your module
 [A] Apache  [M] MIT  [N] None  [?] Help (default is "M"): ?
 A - Adds an Apache license file.
@@ -143,7 +160,9 @@ N - No license specified.
 ```
 
 ### Parameter Type: Multi Choice
+
 The `multichoice` parameter asks for one or more of the available options (supplied as a comma separated list of choices). Place the ampersand in front of the character in the `label` that is best suitable as a "keyboard accelerator" for the given choice. This choice type also provides a help option '`?`' used to display the help text:
+
 ```xml
 <parameter name='Options' type='multichoice' default='0,1,2' store='text' prompt='Select desired options'>
   <choice label='&amp;Pester test support'
@@ -162,7 +181,8 @@ The `multichoice` parameter asks for one or more of the available options (suppl
 ```
 
 This parameter definition results in the following output, including the help output:
-```
+
+```text
 Select desired options
 [P] Pester test support
 [S] PSake build script
@@ -179,9 +199,11 @@ Choice[0]:
 ```
 
 ### Parameter Type: Other
+
 The `user-fullname` and `user-email` parameter types are the same as the `text` type, except that they get their default values from from the user's .gitconfig file (if the user has one, and no default is set in the manifest).
 
 Here is an example of the XML for this parameter.
+
 ```xml
 <parameter name='FullName'
            type='user-fullname'
@@ -190,14 +212,17 @@ Here is an example of the XML for this parameter.
 ```
 
 This results in the following prompt, with the default value of 'Your Name' coming from your .gitconfig file:
-```
+
+```text
 Enter your full name (Your Name):
 ```
 
 ## Content
+
 There are a selection of elements in the `content` block that can be used to specify all of the content that should be included with your template and how it should be created and transformed into the end product that the template provides.
 
 The available element types are:
+
 - `file`              - Specify one or more files to copy under the destination folder.
 - `templateFile`      - Specify one or more template files to copy and expand under the destination folder.
 - `message`           - Display a message to the user.
@@ -206,10 +231,13 @@ The available element types are:
 - `requireModule`     - Checks to see if the specified module is installed. If not, the user is notified of the need to install the module.
 
 ### Content element: Common
+
 Currently, there is only one common attribute shared between all current content elements.
+
 - `condition` - Used to determine whether a directive is executed. If the condition (a PowerShell expression) evaluates to true, it will execute.
 
 Some elements use the encoding attribute, while not a common attribute, has a common set of possible values:
+
 - `Default`
 - `Ascii`
 - `BigEndianUnicode`
@@ -224,27 +252,32 @@ Some elements use the encoding attribute, while not a common attribute, has a co
 Element attribute values support the use of Plaster parameters, which are parameter values that can be expanded into file names, or other pieces of information the template deals with. These map to available parameters, licenses and other data that is provided in the template.
 
 ### Content element: File
+
 One or more files can be selected (using wild cards like `*`) with each file element. Attribute values support the inclusion of Plaster parameters to control (as an example) the location or the name of the resulting file.
 
 Available attributes for this content element:
+
 - `source`       - Specifies the relative path to the file in the template's root folder.
 - `destination`  - Specifies the relative path, under the destination folder, to where the file will be copied. Files can only be copied to a location under the destination folder.
 - `condition`    - Used to determine whether a directive is executed. If the condition (a PowerShell expression) evaluates to true, it will execute.
 - `openInEditor` - Specifies whether the file should be opened in the editor (true) after scaffolding or not (false).  The PowerShell extension for Visual Studio Code honors this setting.
 
 A basic example of this content element would be:
+
 ```xml
 <file source='ReleaseNotes.md'
       destination=''/>
 ```
 
 A basic example of this content element, to create an empty directory, would be:
+
 ```xml
 <file source=''
       destination='src\bin'/>
 ```
 
 Two more complex examples are:
+
 ```xml
 <file source='Tests\*.tests.ps1'
       destination='test\'
@@ -257,9 +290,11 @@ Two more complex examples are:
 ```
 
 ### Content element: TemplateFile
+
 Specify one or more template files (using wild cards, as with the file element) to copy and expand under the destination folder. Expansion is done by looking through the file and expanding out any Plaster parameters that are found.
 
 Available attributes for this content element:
+
 - `source`       - Specifies the relative path to the file in the template's root folder.
 - `destination`  - Specifies the relative path, under the destination folder, to where the file will be copied.
 - `encoding`     - Specifies the encoding of the file, see `Content Element: Common` for possible values. If you do not specify an encoding, ASCII encoding will be used.
@@ -275,13 +310,16 @@ An example of using the template file element:
 ```
 
 ### Content element: Message
+
 The message type is a pretty straightforward element with two potential attributes (both optional).
 
 Available attributes for this content element:
+
 - `nonewline` - If true, suppresses output of a newline at the end of the message.
 - `condition` - Used to determine whether a directive is executed. If the condition (a PowerShell expression) evaluates to true, it will execute.
 
 Here is an example of the message element:
+
 ```xml
 <message>
 A message to the user
@@ -291,14 +329,17 @@ and other interesting information.
 ```
 
 This example shows Plaster parameter expansion working in the message element:
+
 ```xml
 <message nonewline='true'>`n`nYour new PowerShell module project $PLASTER_PARAM_ModuleName </message>
 ```
 
 ### Content element: Modify
+
 The modify element allows you to replace file contents, allowing you to copy files using the `file` element, then substituting content to meet your needs. Multiple replace elements can be used in a single modify element. Each replace element has one original and one substitute element to define what that replace operation does to the file.
 
 Available attributes for this content element are:
+
 - `replace`   - Specify a replacement operation of the file content.
     - `original`   - The original text, or regular expression match to replace. If just searching for text, regular expression syntax must be used by escaping backslashes and other special characters. Additionally, because XML has to encode certain element content characters you might use in a regular expression (`<`, `>`), you may want to use a CDATA section to encode the expression.
         - `expand` - Whether to expand variables within the original for match.
@@ -326,9 +367,11 @@ Here is a simple example of the modify element, using a regular expressions:
 #### NOTE: Only use `(?[smi])` if you need to override PowerShell's default regular expression behavior. `(?s)` means that `.` matches every char including `\n` in order for the regular expression to span multiple lines.
 
 ### Content element: NewModuleManifest
+
 This element allows you to create a module manifest using the data that has been input to Plaster through Plaster parameters.
 
 Available attributes for this content element:
+
 - `destination`          - Specifies the relative path, under the destination folder, to where the file will be copied.
 - `author`               - Specifies the value of the Author property.
 - `companyName`          - Specifies the value of the CompanyName property.
@@ -343,6 +386,7 @@ Available attributes for this content element:
 - `dscResourcesToExport` - Specifies a DSC resource to export.
 
 Here is an example of the `newModuleManifest` element:
+
 ```xml
 <newModuleManifest destination='src\${PLASTER_PARAM_ModuleName}.psd1'
                    moduleVersion='$PLASTER_PARAM_Version'
@@ -354,9 +398,11 @@ Here is an example of the `newModuleManifest` element:
 ```
 
 ### Content element: RequireModule
+
 The `requireModule` element specifies modules that are required under certain conditions resulting from the choices input by the user.
 
 Available attributes for this content element:
+
 - `name`            - Specifies the name of the required module.
 - `minimumVersion`  - The required module's minimum version.
 - `maximumVersion`  - The required module's maximum version.
@@ -373,6 +419,7 @@ Available attributes for this content element:
 ```
 
 ## Attribute and Condition Evaluation
+
 Many of the XML attributes in a manifest can contain variables or expressions that evaluate to a string.
 The attribute's value is passed into a constrained runspace in the context of a double quoted string for interpolation and the resulting string is used for template processing.
 Note the XML attributes on the `<parameter>` directive, except for the `default` and `prompt` attributes, are not processed this way because they are processed during `dynamicparam` execution.
@@ -383,11 +430,13 @@ The contents of this condition attribute are evaluated in the same constrained r
 However, in the case of a `condition` attribute the resulting value is coerced to a [bool] which determines whether the associated directive is executed.
 
 ## TemplateFile processing
+
 A file that is processed with the `<templateFile>` directive will be processed, replacing script expression delimiters and script block delimiters with PowerShell generated text.
 The script expression delimiter is `<%= %>`.  The contents of a script expression delimiter are executed and the results cast to a string and inserted into the file.
 
 The script block delimiter is:
-```
+
+```powershell
 <%
     if ($PLASTER_PARAM_Ensure -eq 'Yes') {
 "        # Ensure the presence/absene of the resource."
@@ -397,6 +446,7 @@ The script block delimiter is:
     }
 %>
 ```
+
 Where both starting and closing delimiter must appear in column zero.
 The contents of a script block delimiter are executed and the results cast to a string array and inserted into the file.
 
@@ -435,18 +485,23 @@ In addition, the following commands are available:
 - Compare-Object
 
 # EXAMPLES
+
 You can create a base Plaster manifest by running the New-PlasterManifest command.
 
 See the included `NewModule` or `NewDscResourceScript` `plasterManifest.xml` for more examples.
 
 # NOTE
+
 You can find additional information about Plaster at the [GitHub page](https://github.com/PowerShell/Plaster)
 
 # TROUBLESHOOTING NOTE
+
 This topic is not yet complete.
 
 # SEE ALSO
-- https://github.com/PowerShell/Plaster
+
+- [https://github.com/PowerShell/Plaster]
 
 # KEYWORDS
+
 - Plaster Manifest
