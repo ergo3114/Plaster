@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <plasterManifest schemaVersion="1.1"
                  templateType="Project"
-                 xmlns="http://www.microsoft.com/schemas/PowerShell/Plaster/v1">
+                 xmlns="C:\Users\littlejohn\git\Plaster\src\Schema">
   <metadata>
     <name>NewPowerShellScriptModule</name>
     <id>2a7c3f58-4a45-4d55-9b07-753ac7608114</id>

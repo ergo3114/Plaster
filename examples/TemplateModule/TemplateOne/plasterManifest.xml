@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <plasterManifest
-  schemaVersion="0.4" xmlns="http://www.microsoft.com/schemas/PowerShell/Plaster/v1">
+  schemaVersion="0.4" xmlns="C:\Users\littlejohn\git\Plaster\src\Schema">
   <metadata>
     <name>TemplateOneTemplate</name>
     <id>635046f0-a59b-46a0-b6b3-892084707467</id>

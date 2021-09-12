@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<plasterManifest schemaVersion="0.4" xmlns="http://www.microsoft.com/schemas/PowerShell/Plaster/v1">
+<plasterManifest schemaVersion="0.4" xmlns="C:\Users\littlejohn\git\Plaster\src\Schema">
     <metadata>
         <id>dcd95744-8abc-4ecb-a439-bf2cd37821bb</id>
         <name>NewModule</name>

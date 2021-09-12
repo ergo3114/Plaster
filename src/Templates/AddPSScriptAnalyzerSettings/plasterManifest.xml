@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <plasterManifest schemaVersion="0.4"
                  templateType="Item"
-                 xmlns="http://www.microsoft.com/schemas/PowerShell/Plaster/v1">
+                 xmlns="C:\Users\littlejohn\git\Plaster\src\Schema">
   <metadata>
     <name>AddPSScriptAnalyzerSettings</name>
     <id>f58338ce-b153-4b70-80b8-c7dc63074f7d</id>

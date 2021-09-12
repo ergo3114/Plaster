@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<plasterManifest schemaVersion="0.3" xmlns="http://www.microsoft.com/schemas/PowerShell/Plaster/v1">
+<plasterManifest schemaVersion="0.3" xmlns="C:\Users\littlejohn\git\Plaster\src\Schema">
     <metadata>
         <!-- For the default store file, we need a unique identifier to ensure one template's default value store
              doesn't get used with any other template.  -->

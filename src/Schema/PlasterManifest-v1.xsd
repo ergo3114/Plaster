@@ -6,11 +6,11 @@
      -->
 <xs:schema
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
-  xmlns:ptd="http://www.microsoft.com/schemas/PowerShell/Plaster/v1"
-  targetNamespace="http://www.microsoft.com/schemas/PowerShell/Plaster/v1"
+  xmlns:ptd="C:\Users\littlejohn\git\Plaster\src\Schema"
+  targetNamespace="C:\Users\littlejohn\git\Plaster\src\Schema"
   elementFormDefault="qualified"
   attributeFormDefault="unqualified"
-  version="1.2"
+  version="1.4"
   xml:lang="en"
   xmlns:vs="http://schemas.microsoft.com/Visual-Studio-Intellisense"
     vs:friendlyname="Plaster Manifest Schema"
